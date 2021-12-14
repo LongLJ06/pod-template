@@ -70,21 +70,7 @@ module Pod
     def run
       @message_bank.welcome_message
 
-      platform = "iOS".to_sym
-
-      case platform
-        when :macos
-          ConfigureMacOSSwift.perform(configurator: self)
-        when :ios
-          framework = "Swift".to_sym
-          case framework
-            when :swift
-              ConfigureSwift.perform(configurator: self)
-
-            when :objc
-              ConfigureIOS.perform(configurator: self)
-          end
-      end
+      ConfigureSwift.perform(configurator: self)
 
       replace_variables_in_files
       clean_template_files
