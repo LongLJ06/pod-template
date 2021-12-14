@@ -17,20 +17,20 @@ module Pod
       framework = :none
       case framework
         when :quick
-          puts "xiao quick-----" + framework
+          puts "xiao quick-----" + framework.to_s
           configurator.add_pod_to_podfile "Quick', '~> 2.2.0"
           configurator.add_pod_to_podfile "Nimble', '~> 8.0.7"
           configurator.set_test_framework "quick", "swift", "swift"
 
         when :none
-          puts "xiao none-----" + framework
+          puts "xiao none-----" + framework.to_s
           configurator.set_test_framework "xctest", "swift", "swift"
       end
 
       snapshots = :no
       case snapshots
         when :yes
-          puts "xiao snapshots-----" + snapshots
+          puts "xiao snapshots-----" + snapshots.to_s
           configurator.add_pod_to_podfile "FBSnapshotTestCase' , '~> 2.1.4"
 
           if keep_demo == :no
@@ -43,7 +43,7 @@ module Pod
           end
       end
 
-      puts "xiao keep_demo-----" + keep_demo
+      puts "xiao keep_demo-----" + keep_demo.to_s
       puts "xiao keep_demo2-----" + (keep_demo == :no)
       Pod::ProjectManipulator.new({
         :configurator => @configurator,

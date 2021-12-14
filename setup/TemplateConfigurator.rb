@@ -71,19 +71,19 @@ module Pod
       @message_bank.welcome_message
 
       platform = :ios
-      puts "xiao platform-----" + platform
+      puts "xiao platform-----" + platform.to_s
 
       case platform
         when :macos
           ConfigureMacOSSwift.perform(configurator: self)
         when :ios
           framework = :swift
-          puts "xiao framework-----" + framework
+          puts "xiao framework-----" + framework.to_s
           
           case framework
             when :swift
               ConfigureSwift.perform(configurator: self)
-              puts "xiao framework swift-----" + framework
+              puts "xiao framework swift-----" + framework.to_s
             when :objc
               ConfigureIOS.perform(configurator: self)
           end
