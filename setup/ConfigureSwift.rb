@@ -44,7 +44,7 @@ module Pod
       end
 
       puts "xiao keep_demo-----" + keep_demo.to_s
-      puts "xiao keep_demo2-----" + (keep_demo == :no)
+      puts "xiao keep_demo2-----" + (keep_demo == :no).to_s
       Pod::ProjectManipulator.new({
         :configurator => @configurator,
         :xcodeproj_path => "templates/swift/Example/PROJECT.xcodeproj",
