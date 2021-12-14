@@ -70,7 +70,24 @@ module Pod
     def run
       @message_bank.welcome_message
 
-      ConfigureSwift.perform(configurator: self)
+      platform = :ios
+      puts "xiao platform-----" + platform
+
+      case platform
+        when :macos
+          ConfigureMacOSSwift.perform(configurator: self)
+        when :ios
+          framework = :swift
+          puts "xiao framework-----" + framework
+          
+          case framework
+            when :swift
+              ConfigureSwift.perform(configurator: self)
+              puts "xiao framework swift-----" + framework
+            when :objc
+              ConfigureIOS.perform(configurator: self)
+          end
+      end
 
       replace_variables_in_files
       clean_template_files

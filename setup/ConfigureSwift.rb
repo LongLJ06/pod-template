@@ -12,13 +12,44 @@ module Pod
     end
 
     def perform
-      configurator.set_test_framework "xctest", "swift", "swift"
+      keep_demo = :yes
 
+      framework = :none
+      case framework
+        when :quick
+          puts "xiao quick-----" + framework
+          configurator.add_pod_to_podfile "Quick', '~> 2.2.0"
+          configurator.add_pod_to_podfile "Nimble', '~> 8.0.7"
+          configurator.set_test_framework "quick", "swift", "swift"
+
+        when :none
+          puts "xiao none-----" + framework
+          configurator.set_test_framework "xctest", "swift", "swift"
+      end
+
+      snapshots = :no
+      case snapshots
+        when :yes
+          puts "xiao snapshots-----" + snapshots
+          configurator.add_pod_to_podfile "FBSnapshotTestCase' , '~> 2.1.4"
+
+          if keep_demo == :no
+              puts " Putting demo application back in, you cannot do view tests without a host application."
+              keep_demo = :yes
+          end
+
+          if framework == :quick
+              configurator.add_pod_to_podfile "Nimble-Snapshots' , '~> 8.0.0"
+          end
+      end
+
+      puts "xiao keep_demo-----" + keep_demo
+      puts "xiao keep_demo2-----" + (keep_demo == :no)
       Pod::ProjectManipulator.new({
         :configurator => @configurator,
         :xcodeproj_path => "templates/swift/Example/PROJECT.xcodeproj",
         :platform => :ios,
-        :remove_demo_project => :no,
+        :remove_demo_project => (keep_demo == :no),
         :prefix => ""
       }).run
 

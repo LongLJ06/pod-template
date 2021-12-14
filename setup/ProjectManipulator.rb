@@ -15,6 +15,7 @@ module Pod
       @platform = options.fetch(:platform)
       @remove_demo_target = options.fetch(:remove_demo_project)
       @prefix = options.fetch(:prefix)
+      puts "xiao --------" + @remove_demo_target
     end
 
     def run

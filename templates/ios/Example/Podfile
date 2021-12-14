@@ -3,6 +3,11 @@ use_frameworks!
 platform :ios, '9.0'
 
 target '${POD_NAME}_Example' do
+  source 'https://cdn.cocoapods.org/'
+  source 'git@gitlab.dxy.net:ios-developer/DXYSpecs.git'
+  source 'git@gitlab.dxy.net:ios-developer/ToDSpecs.git'
+  source 'git@gitlab.dxy.net:ios-developer/thirdpartypodsspec.git'
+  source 'git@gitlab.dxy.net:ios-developer/flutterspecs.git'
   pod '${POD_NAME}', :path => '../'
 
   target '${POD_NAME}_Tests' do
